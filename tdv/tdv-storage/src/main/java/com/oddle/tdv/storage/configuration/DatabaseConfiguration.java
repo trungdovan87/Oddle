@@ -77,7 +77,7 @@ public class DatabaseConfiguration {
         return builder
                 .dataSource(dataSource)
                 //TODO add package for Entity here
-                .packages("com.oddle.tdv.sql.model")
+                .packages("com.oddle.tdv.db.sql.model")
                 .persistenceUnit("db")
                 .build();
     }

@@ -1,9 +1,6 @@
-package com.oddle.tdv.sql.model;
+package com.oddle.tdv.db.sql.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,10 +8,14 @@ public class OddUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Basic(optional = false)
+    @Column(unique = true)
     private String userName;
     private String password;
     private String email;
     private String phone;
+
     private Date createdDate;
     private Date lastUpdate;
 
