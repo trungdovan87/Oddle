@@ -28,12 +28,7 @@ apply plugin: 'io.spring.dependency-management'
 sourceCompatibility = 1.8
 
 dependencies {
-    compile project(':tdv-db-model')
-
-    compile 'org.springframework.boot:spring-boot-starter-security'
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile 'org.apache.tomcat:tomcat-jdbc:9.0.0.M25'
 
-    runtime('mysql:mysql-connector-java')
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
