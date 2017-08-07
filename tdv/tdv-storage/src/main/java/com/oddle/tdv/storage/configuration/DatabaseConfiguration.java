@@ -15,7 +15,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -43,7 +47,7 @@ public class DatabaseConfiguration {
     protected DataSourceProperties userDataSourceProperties() {
         logger.info("\n\n----> Init Bean DataSourceProperties <----\n\n");
         return new DataSourceProperties();
-    };
+    }
 
     private DataSource createDataSource(DataSourceProperties properties) {
         return (DataSource) DataSourceBuilder.create(properties.getClassLoader()).type(DataSource.class)
@@ -66,7 +70,16 @@ public class DatabaseConfiguration {
             dataSource.setTestOnBorrow(true);
             dataSource.setValidationQuery(validationQuery);
         }
+        DatabasePopulatorUtils.execute(createDatabasePopulator(), dataSource);
+
         return dataSource;
+    }
+
+    private DatabasePopulator createDatabasePopulator() {
+        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+        databasePopulator.setContinueOnError(true);
+        databasePopulator.addScript(new ClassPathResource("schema.sql2"));
+        return databasePopulator;
     }
 
     @Primary

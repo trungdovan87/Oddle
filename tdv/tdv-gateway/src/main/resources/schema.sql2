@@ -1,0 +1,9 @@
+-- create table with utf8
+-- CREATE DATABASE insurance CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+-- drop DB
+-- DROP DATABASE `insurance`;
+
+-- insert Area
+INSERT INTO `OddUser` (`email`, `password`, `userName`) VALUES ('trungdovan87@gmail.com', '123456', 'admin');
+
