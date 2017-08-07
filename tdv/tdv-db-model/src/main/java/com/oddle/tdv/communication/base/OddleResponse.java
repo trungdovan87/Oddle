@@ -7,9 +7,16 @@ public class OddleResponse<T> {
     private Integer subCode;
     private T data;
 
-    public static <T> OddleResponse createSuccessResponse(T data) {
-        EResponseCode success = EResponseCode.SUCCESS;
-        return new OddleResponse<>(success.getStatus(), success.getError(), 0, success.getError(), data);
+    public static <T> OddleResponse<T> createSuccessResponse(T data) {
+        return new OddleResponse<>(EResponseCode.SUCCESS, SubCode.SUCCESS, data);
+    }
+
+    public static <T> OddleResponse<T> createErrorResponse(EResponseCode code, SubCode subCode) {
+        return new OddleResponse<>(code, subCode, null);
+    }
+
+    public OddleResponse(EResponseCode code, SubCode subCode, T data) {
+        this(code.getStatus(), code.getError(), subCode.getSubCode(), subCode.getMessage(), data);
     }
 
     public OddleResponse(int status, String error, Integer subCode, String message,  T data) {

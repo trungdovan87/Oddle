@@ -3,6 +3,7 @@ package com.oddle.tdv.communication.base;
 public enum EResponseCode {
 
     SUCCESS(0, "Success"),
+    UNKNOWN_ERROR(-1, "Unknown Error"),
     WRONG_INPUT_FORMAT(101, "Wrong input format"),
     WRONG_DATA(102, "Wrong data");
 
