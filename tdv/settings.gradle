@@ -1,4 +1,5 @@
 include 'tdv-storage'
 include 'tdv-gateway'
 include 'tdv-db-model'
+include 'tdv-service'
 

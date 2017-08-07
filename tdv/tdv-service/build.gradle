@@ -13,7 +13,7 @@ sourceCompatibility = 1.8
 dependencies {
     ext.springBootVersion = '2.0.0.M3'
 
-    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-
+    //compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    compile project(":tdv-storage")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

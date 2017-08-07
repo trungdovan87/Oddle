@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    compile project(":tdv-storage")
+    compile project(":tdv-service")
     compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.boot:spring-boot-starter-web'
 //    compile('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -43,10 +43,11 @@ dependencies {
 //    compile('org.springframework.boot:spring-boot-starter-validation')
 //    compile('org.springframework.boot:spring-boot-starter-websocket')
 
-//    runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('org.springframework.boot:spring-boot-devtools')
 //    runtime('org.hsqldb:hsqldb')
-//    runtime('mysql:mysql-connector-java')
+    runtime('mysql:mysql-connector-java') //version: 5.1.43
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
     testCompile('org.springframework.security:spring-security-test')
 }
