@@ -1,8 +1,8 @@
 -- create table with utf8
--- CREATE DATABASE insurance CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- CREATE DATABASE oddle_shop CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- drop DB
--- DROP DATABASE `insurance`;
+-- DROP DATABASE `oddle_shop`;
 
 -- insert Area
 INSERT INTO `OddUser` (`email`, `password`, `userName`) VALUES ('trungdovan87@gmail.com', '123456', 'admin');
