@@ -1,6 +1,7 @@
 package com.oddle.tdv.boot.face;
 
 
+import com.oddle.tdv.boot.gateway.UserGateway;
 import com.oddle.tdv.communication.base.OddleResponse;
 import com.oddle.tdv.communication.request.UserRequest;
 import com.oddle.tdv.communication.response.UserResponse;
@@ -16,10 +17,10 @@ import java.util.Date;
 @RequestMapping(path = "/acc")
 public class AccountController {
     @Autowired
-    private UserRepository userRepository;
+    private UserGateway userGateway;
 
     @PostMapping(path = "/register")
-    public OddleResponse<Boolean> register(@RequestBody UserRequest request) {
+    public OddleResponse<Long> register(@RequestBody UserRequest request) {
         try {
             OddUser user = new OddUser();
             user.setCreatedDate(new Date());
@@ -29,10 +30,11 @@ public class AccountController {
             user.setEmail(request.getEmail());
             user.setPhone(request.getPhone());
             user.setPassword(request.getPassword());
-            userRepository.save(user);
-            return OddleResponse.createSuccessResponse(true);
+            //userRepository.save(user);
+
+            return OddleResponse.createSuccessResponse(userGateway.register(request));
         } catch (Exception ex) {
-            return OddleResponse.createSuccessResponse(false);
+            return OddleResponse.createSuccessResponse(-1l);
         }
 
 

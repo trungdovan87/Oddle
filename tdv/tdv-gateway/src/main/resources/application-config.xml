@@ -13,6 +13,6 @@
     <context:annotation-config/>
     <mvc:annotation-driven/>
 
-    <!--<context:component-scan base-package="com.oddle.tdv"/>-->
-    <!--<import resource="user-integration.xml"/>-->
+    <context:component-scan base-package="com.oddle.tdv"/>
+    <import resource="user-integration.xml"/>
 </beans>
