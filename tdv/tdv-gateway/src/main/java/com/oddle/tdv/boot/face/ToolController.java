@@ -1,4 +1,4 @@
-package com.oddle.tdv.gateway.face;
+package com.oddle.tdv.boot.face;
 
 
 import org.springframework.http.ResponseEntity;
