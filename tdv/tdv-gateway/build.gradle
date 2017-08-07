@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    compile project(":tdv-service")
+    compile project(":tdv-business")
     compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-integration'

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <gateway id="cityGateway"
+             service-interface="com.oddle.tdv.boot.gateway.CityGateway"
+             default-reply-timeout="30000">
+        <method name="create" request-channel="city-create-channel"/>
+    </gateway>
+
+    <channel id="city-create-channel"/>
+    <chain input-channel="city-create-channel">
+        <filter ref="cityDataInputValidator" method="validateCreate" throw-exception-on-rejection="true"/>
+        <!--<filter ref="securityUserValidator" method="validateAdd" throw-exception-on-rejection="true"/>-->
+        <filter ref="cityStorageValidator" method="validateCreate" throw-exception-on-rejection="true"/>
+        <!--<transformer ref="dataTransformer" method="convertToData"/>-->
+        <service-activator ref="cityService" method="create"/>
+    </chain>
+
+    <beans:bean id="cityDataInputValidator" class="com.oddle.tdv.boot.filter.CityDataInputValidator"/>
+    <beans:bean id="cityService" class="com.oddle.tdv.service.business.impl.CityServiceImpl"/>
+    <beans:bean id="cityStorageValidator" class="com.oddle.tdv.service.filter.CityStorageValidator"/>
+</beans:beans>

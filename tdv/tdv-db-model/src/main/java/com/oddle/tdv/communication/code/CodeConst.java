@@ -5,4 +5,7 @@ public class CodeConst {
 
     public static int CODE_ID_IS_NOT_NULL = 1010;
     public static String MSG_ID_IS_NOT_NULL = "Id(%d) must be null";
+
+    public static int CODE_CITY_NAME_EXIST = 1011;
+    public static String MSG_CITY_NAME_EXIST = "City with name = '%s' exist";
 }

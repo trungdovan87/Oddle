@@ -7,7 +7,7 @@
 			http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    <gateway id="userInsGateway"
+    <gateway id="userGateway"
              service-interface="com.oddle.tdv.boot.gateway.UserGateway"
              default-reply-timeout="30000">
         <method name="register" request-channel="user-add-channel"/>
@@ -15,13 +15,13 @@
 
     <channel id="user-add-channel"/>
     <chain input-channel="user-add-channel">
-        <filter ref="userDataInputUser" method="validateRegister" throw-exception-on-rejection="true"/>
+        <filter ref="userDataInputValidator" method="validateRegister" throw-exception-on-rejection="true"/>
         <!--<filter ref="securityUserValidator" method="validateAdd" throw-exception-on-rejection="true"/>-->
         <!--<filter ref="storageUserValidator" method="validateAdd" throw-exception-on-rejection="true"/>-->
         <!--<transformer ref="dataTransformer" method="convertToData"/>-->
         <service-activator ref="userService" method="register"/>
     </chain>
 
-    <beans:bean id="userDataInputUser" class="com.oddle.tdv.boot.filter.UserDataInputValidator"/>
-    <beans:bean id="userService" class="com.oddle.tdv.service.impl.UserServiceImpl"/>
+    <beans:bean id="userDataInputValidator" class="com.oddle.tdv.boot.filter.UserDataInputValidator"/>
+    <beans:bean id="userService" class="com.oddle.tdv.service.business.impl.UserServiceImpl"/>
 </beans:beans>
