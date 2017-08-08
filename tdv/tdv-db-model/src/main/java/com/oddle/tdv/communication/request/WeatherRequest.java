@@ -1,61 +1,30 @@
-package com.oddle.tdv.db.sql.model;
+package com.oddle.tdv.communication.request;
 
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Table
-public class Weather implements Serializable {
+public class WeatherRequest {
+    private Long cityId;
 
-    @Id
-    @OneToOne
-    private City city;
-
-    @Basic(optional = false)
-    @Column(nullable = false)
     private float temperature;
 
-    @Basic(optional = false)
-    @Column(nullable = false, length = 30)
     private String status;
 
-    @Basic(optional = false)
-    @Column(nullable = false)
     private float windy;
 
-    @Basic(optional = false)
-    @Column(nullable = false)
     private float humidity;
 
-    @Basic(optional = false)
-    @Column(nullable = false)
     private float pressure;
 
-    @Basic(optional = false)
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @Basic(optional = false)
-    @Column(nullable = false, length = 1000)
     private String note;
 
-    public City getCity() {
-        return city;
+    public Long getCityId() {
+        return cityId;
     }
 
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public float getWindy() {
-        return windy;
-    }
-
-    public void setWindy(float windy) {
-        this.windy = windy;
+    public void setCityId(Long cityId) {
+        this.cityId = cityId;
     }
 
     public float getTemperature() {
@@ -72,6 +41,14 @@ public class Weather implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public float getWindy() {
+        return windy;
+    }
+
+    public void setWindy(float windy) {
+        this.windy = windy;
     }
 
     public float getHumidity() {
