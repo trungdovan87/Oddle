@@ -7,7 +7,6 @@ import com.oddle.tdv.communication.request.WeatherRequest;
 import com.oddle.tdv.db.sql.model.City;
 import com.oddle.tdv.exception.OddleException;
 import com.oddle.tdv.storage.db.CityRepository;
-import org.hibernate.LazyInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
@@ -17,10 +16,9 @@ public class WeatherStorageValidator {
     private CityRepository cityRepo;
 
     public boolean validateSave(WeatherRequest request) {
-        try {
-            Optional<City> optional =cityRepo.findOne(request.getCityId());
-            cityRepo.getOne(request.getCityId()).getId();
-        } catch (LazyInitializationException ex) {
+
+        Optional<City> optional = cityRepo.findById(request.getCityId());
+        if (!optional.isPresent()) {
             throw new OddleException(EResponseCode.WRONG_DATA,
                     new SubCode(CodeConst.CODE_CITY_ID_IS_NULL,
                             String.format(CodeConst.MSG_CITY_ID_IS_NOT_EXIST, request.getCityId())

@@ -13,6 +13,4 @@ public interface CityRepository extends JpaRepository<City, Long> {
 
     @Query("SELECT c FROM City c WHERE c.name LIKE ?1")
     Optional<City> findByName(String name);
-
-    Optional<City> findOne(Long id);
 }
