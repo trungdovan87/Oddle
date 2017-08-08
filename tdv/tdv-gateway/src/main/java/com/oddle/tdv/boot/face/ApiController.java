@@ -6,14 +6,11 @@ import com.oddle.tdv.communication.base.OddleResponse;
 import com.oddle.tdv.communication.base.PageableData;
 import com.oddle.tdv.communication.base.PagingRequest;
 import com.oddle.tdv.communication.response.WeatherResponse;
-import com.oddle.tdv.db.sql.model.City;
 import com.oddle.tdv.storage.db.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
