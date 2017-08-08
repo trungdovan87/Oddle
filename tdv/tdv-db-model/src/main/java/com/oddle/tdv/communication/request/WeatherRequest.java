@@ -1,5 +1,7 @@
 package com.oddle.tdv.communication.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class WeatherRequest {
@@ -15,6 +17,7 @@ public class WeatherRequest {
 
     private float pressure;
 
+    @JsonFormat(pattern = "hh:mm yyyy-MM-dd")
     private Date createDate;
 
     private String note;

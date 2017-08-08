@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    compile project(":tdv-business")
+    compile project(":tdv-service")
     compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-integration'
@@ -49,6 +49,5 @@ dependencies {
     runtime('mysql:mysql-connector-java') //version: 5.1.43
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
-
     testCompile('org.springframework.security:spring-security-test')
 }
