@@ -35,8 +35,8 @@ public class ApiController extends AbstractController {
                                       @RequestParam(required = false) Integer pageNumber,
                                       @RequestParam(required = false) Integer pageSize
                                       ) {
-
-        return OddleResponse.createSuccessResponse(apiGateway.search(new PageableData<>(name, new PagingRequest(pageNumber, pageSize))));
+        PageableData request = new PageableData<>(name, new PagingRequest(pageNumber, pageSize));
+        return requestGW(request, apiGateway::search);
     }
 
     @GetMapping("/echo")
