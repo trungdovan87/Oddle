@@ -1,7 +1,5 @@
 package com.oddle.tdv.boot.app;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,7 +14,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class OddleSecurity extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(WebSecurity web) throws Exception {
-//        super.configure(web);
 //        web.ignoring().antMatchers("/tools/encode");
 //        web.ignoring().antMatchers("/api/**");
 //        web.ignoring().antMatchers("/**");
@@ -24,7 +21,6 @@ public class OddleSecurity extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        super.configure(http);
         http.csrf().disable();
 
         http.exceptionHandling()
@@ -38,16 +34,5 @@ public class OddleSecurity extends WebSecurityConfigurerAdapter{
 //            .and().authorizeRequests().antMatchers("/**").hasAnyRole("HOMEDIRECT/AdminHome").anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new CORSFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
-
-    @Bean
-    public FilterRegistrationBean someFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(new CORSFilter());
-        registration.addUrlPatterns("/**");
-        registration.addInitParameter("paramName", "paramValue");
-        registration.setName("someFilter");
-        registration.setOrder(1);
-        return registration;
     }
 }
