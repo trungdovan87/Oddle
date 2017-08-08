@@ -38,7 +38,7 @@ public class Weather implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @Basic(optional = true)
+    @Basic(optional = true, fetch = FetchType.LAZY)
     @Column(nullable = true, length = 1000)
     private String note;
 

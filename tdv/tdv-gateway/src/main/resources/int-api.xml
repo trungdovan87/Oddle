@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <gateway id="apiGateway"
+             service-interface="com.oddle.tdv.boot.gateway.ApiGateway"
+             default-reply-timeout="30000">
+        <method name="get" request-channel="api-get-channel"/>
+    </gateway>
+
+    <channel id="api-get-channel"/>
+    <chain input-channel="api-get-channel">
+        <filter ref="apiDataInputValidator" method="validateGet" throw-exception-on-rejection="true"/>
+        <!--<filter ref="securityUserValidator" method="validateAdd" throw-exception-on-rejection="true"/>-->
+        <filter ref="apiStorageValidator" method="validateGet" throw-exception-on-rejection="true"/>
+        <service-activator ref="apiService" method="get"/>
+        <transformer ref="weatherTransformer" method="convertToWeatherRes"/>
+    </chain>
+
+    <beans:bean id="apiDataInputValidator" class="com.oddle.tdv.boot.filter.ApiDataInputValidator"/>
+    <beans:bean id="apiStorageValidator" class="com.oddle.tdv.service.filter.ApiStorageValidator"/>
+    <beans:bean id="weatherTransformer" class="com.oddle.tdv.service.transformer.WeatherTransformer"/>
+    <beans:bean id="apiService" class="com.oddle.tdv.service.business.impl.ApiServiceImpl"/>
+</beans:beans>

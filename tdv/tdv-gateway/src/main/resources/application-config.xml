@@ -17,4 +17,5 @@
     <import resource="int-user.xml"/>
     <import resource="int-city.xml"/>
     <import resource="int-weather.xml"/>
+    <import resource="int-api.xml"/>
 </beans>
