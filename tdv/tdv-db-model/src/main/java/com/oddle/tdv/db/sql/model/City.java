@@ -5,12 +5,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Embeddable
 public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "city")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "city")
     private Weather weather;
 
     @Basic(optional = false)
@@ -19,6 +20,11 @@ public class City implements Serializable {
 
     @Column(nullable = true, length = 1000)
     private String note;
+
+    public City() {
+        this.setWeather(new Weather());
+        this.getWeather().setCity(this);
+    }
 
     public Long getId() {
         return id;

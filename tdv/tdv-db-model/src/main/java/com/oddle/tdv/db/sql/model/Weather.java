@@ -38,8 +38,8 @@ public class Weather implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @Basic(optional = false)
-    @Column(nullable = false, length = 1000)
+    @Basic(optional = true)
+    @Column(nullable = true, length = 1000)
     private String note;
 
     public City getCity() {
@@ -104,5 +104,13 @@ public class Weather implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @PrePersist
+    private void prePersist() {
+        if (createDate == null)
+            createDate = new Date();
+        if (status == null)
+            status = "just created";
     }
 }
