@@ -1,23 +1,8 @@
 import React, {Component} from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "./commons/preload";
 import api from "./api/service/WeatherApi"
-
-// Code Example
-// import apiClient from "./api/ApiClient";
-// let result = apiClient.login('admin1', '123456');
-//
-// result.then(
-//     token => {
-//         let api = apiClient.getPartnerApi()
-//         let promise = api.add({name: 'My Name'})
-//         promise
-//             .then(json => {
-//                 console.log("json add: ", json)
-//             });
-//     }
-// ).catch(error => console.log("error!!! ", error));
+import SelectScreen from "./component/SelectScreen"
 
 let promise = api.get(2);
 promise.then(
@@ -26,21 +11,30 @@ promise.then(
     }
 );
 
-
-
 class App extends Component {
+    that = this;
+
+    constructor() {
+        super();
+        this.state = {
+            screen: "select"
+        }
+
+        this.selectScreen = this.selectScreen.bind(this);
+    }
+
+    selectScreen(name) {
+        this.setState({screen: name})
+    }
+
     render() {
-        return (
-            <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h2>Welcome to React</h2>
-                </div>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
-            </div>
-        );
+        if (this.state.screen === "select") {
+            return (
+                <SelectScreen selectScreen = {this.selectScreen} />
+            );
+        } else if (this.state.screen === "end-user") {
+            return <p> End User screen </p>
+        }
     }
 }
 
