@@ -2,20 +2,31 @@ import React, {Component} from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "./commons/preload";
-import apiClient from "./api/ApiClient";
+import api from "./api/service/WeatherApi"
 
-let result = apiClient.login('admin1', '123456');
+// Code Example
+// import apiClient from "./api/ApiClient";
+// let result = apiClient.login('admin1', '123456');
+//
+// result.then(
+//     token => {
+//         let api = apiClient.getPartnerApi()
+//         let promise = api.add({name: 'My Name'})
+//         promise
+//             .then(json => {
+//                 console.log("json add: ", json)
+//             });
+//     }
+// ).catch(error => console.log("error!!! ", error));
 
-result.then(
-    token => {
-        let api = apiClient.getPartnerApi()
-        let promise = api.add({name: 'My Name'})
-        promise
-            .then(json => {
-                console.log("json add: ", json)
-            });
+let promise = api.get(2);
+promise.then(
+    json => {
+        console.log("json get Weather: ", json);
     }
-).catch(error => console.log("error!!! ", error));
+);
+
+
 
 class App extends Component {
     render() {

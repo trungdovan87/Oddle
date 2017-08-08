@@ -10,7 +10,7 @@ export let HOST;
 
 switch (env) {
     case ENV.DEV:
-        HOST = 'http://localhost:8081'
+        HOST = 'http://localhost:8080'
         break;
     case ENV.STAGE:
         break;
@@ -19,4 +19,5 @@ switch (env) {
     default:
         throw Error('Unknown Environment: ' + env);
 }
+
 

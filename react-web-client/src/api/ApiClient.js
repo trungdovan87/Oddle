@@ -36,13 +36,13 @@ class ApiClient {
         .then(response => {
             if (response.status === 200) {
                 return response.text().then(text => {
-                    console.log("success --- text: ", text) 
+                    console.log("success --- text: ", text);
                     this.token = text                     
                     return this.token;
                 })
             } else {                
-                console.log("Fail --- status: ", response.status) 
-                this.token = undefined
+                console.log("Fail --- status: ", response.status);
+                this.token = undefined;
                 throw new Error("Unable To Login");
             }
         })    

@@ -3,7 +3,7 @@ import AbstractApi from '../AbstractApi'
 class PartnerApi extends AbstractApi {
 
     constructor(host, token) {
-        super(host, token)
+        super(host);
         this._context = "/partner"
     }
 
@@ -19,9 +19,9 @@ class PartnerApi extends AbstractApi {
         if (status !== undefined)
             params['status'] = status;
         if (fromCreateDate !== undefined)
-            params['fromCreateDate'] = status;
+            params['fromCreateDate'] = fromCreateDate;
         if (toCreateDate !== undefined)
-            params['toCreateDate'] = status;
+            params['toCreateDate'] = toCreateDate;
         return this._httpGet(this._createUrlWithToken(this._context + "/list", params));
     }
 
