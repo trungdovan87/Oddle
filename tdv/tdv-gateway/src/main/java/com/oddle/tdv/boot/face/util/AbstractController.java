@@ -22,7 +22,7 @@ public class AbstractController {
         } catch (Exception ex) {
             logger.warn("Unable to runGateway, request: " + request, ex);
             return OddleResponse.createErrorResponse(EResponseCode.UNKNOWN_ERROR,
-                    new SubCode(CodeConst.UNKNOWN_ERR,"failure: type: " + ex.getClass().getName() + ", message: " + ex.getMessage())
+                    new SubCode(CodeConst.CODE_UNKNOWN_ERR,"failure: exception: " + ex.getClass().getName() + ", message: " + ex.getMessage())
             );
         }
     }
@@ -36,7 +36,7 @@ public class AbstractController {
         } catch (Exception ex) {
             logger.warn("Unable to runGateway, request: " + request, ex);
             return OddleResponse.createErrorResponse(EResponseCode.UNKNOWN_ERROR,
-                    new SubCode(CodeConst.UNKNOWN_ERR,"failure: type: " + ex.getClass().getName() + ", message: " + ex.getMessage())
+                    new SubCode(CodeConst.CODE_UNKNOWN_ERR,"failure: type: " + ex.getClass().getName() + ", message: " + ex.getMessage())
             );
         }
     }
