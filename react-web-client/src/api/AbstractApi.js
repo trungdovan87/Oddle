@@ -87,8 +87,8 @@ class AbstractApi {
     _httpGet(url) {
         return fetch(url)
             .then(response => {
-                console.log("response: ", response)
-                response.json()
+                // console.log("response: ", response)
+                return response.json();
             });
     }
 
