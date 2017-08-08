@@ -35,14 +35,4 @@ public class ApiController extends AbstractController {
         PageableData request = new PageableData<>(name, new PagingRequest(pageNumber, pageSize));
         return requestGW(request, apiGateway::search);
     }
-
-    @GetMapping("/echo")
-    public PageRequest echo() {
-        return PageRequest.of(0, 10);
-    }
-
-    @PostMapping("/test")
-    public PageRequest test(@RequestBody PageRequest pageRequest) {
-        return pageRequest;
-    }
 }
