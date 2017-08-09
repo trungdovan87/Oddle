@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import api from "../api/service/WeatherApi";
+import Modal from 'react-modal';
 
 class WeatherTab extends Component {
 
@@ -28,8 +29,8 @@ class WeatherTab extends Component {
         this.nameInput.focus();
     }
 
-    _convertCityToLI(city) {
-
+    _convertCityToLI= (city) => {
+        let that = this;
         return (
             <li key={city.cityId}>
                 <b> {city.cityName} </b> ({city.createDate})
@@ -37,9 +38,25 @@ class WeatherTab extends Component {
                 <br/>
                 temp: {city.temperature} degree | {city.status} | {city.windy} m/s | {city.humidity}% | {city.pressure} hpa | --
 
-                <button> Edit </button>
+                <button onClick={() => that.setState({editId : city.cityId, updateText : JSON.stringify(city, null, 2)})}> Edit </button>
             </li>
         )
+    }
+
+    _edit = () => {
+        let that = this;
+        if (this.state.editId === undefined) {
+            return <div></div>;
+        }
+        return (
+          <div>
+              <p> <b> Edit city with id = {this.state.editId}</b></p>
+              <textarea style = {{width: 500, height: 300}}  onChange={(event) => that.setState({updateText : event.target.value})} >{this.state.updateText}</textarea>
+              <br/>
+              <button>Update</button>
+              <button onClick={() => that.setState({editId : undefined, updateText : undefined})}>Cancel</button>
+          </div>
+        );
     }
 
     _result() {
@@ -60,18 +77,20 @@ class WeatherTab extends Component {
     render() {
         return (
             <div>
-                <p> <b> Weather Tab </b> </p>
+                <p> Search</p>
                 <input type="text" onChange={this.onTextChange} ref={(input) => {
                     this.nameInput = input;
                 }}/>
-                <p/>
                 {this._result()}
+                {this._edit()}
+
                 <p>---------------</p>
                 <a href=""
                    onClick={(e) => { e.preventDefault(); this.props.selectScreen("home")}}
                 >
                     HOME
                 </a>
+
             </div>
         );
     }
