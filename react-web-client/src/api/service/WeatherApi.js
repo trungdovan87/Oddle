@@ -28,6 +28,11 @@ class WeatherApi extends AbstractApi {
         params['name'] = cityName;
         return this._httpGet(this._createUrlWithoutToken(this._context + "api/weather/search", params));
     }
+
+    saveWeather(weatherRequest) {
+        return this._httpPost(this._createUrlWithoutToken(this._context + "admin/weather/save"), weatherRequest)
+    }
+
 }
 
 const api = new WeatherApi(HOST);

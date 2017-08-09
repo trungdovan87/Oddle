@@ -20,7 +20,7 @@ public class CORSFilter implements Filter {
   public static final String DEFAULT_ACCESS_CONTROL_MAX_AGE_VALUE = "3600";
 
   public static final String ACCESS_CONTROL_ALLOW_HEADERS_NAME = "Access-Control-Allow-Headers";
-  public static final String DEFAULT_ACCESS_CONTROL_ALLOW_HEADERS_VALUE = "x-requested-with";
+  public static final String DEFAULT_ACCESS_CONTROL_ALLOW_HEADERS_VALUE =  "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With";
 
   private String accessControlAllowOrigin = DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_VALUE;
   private String accessControlAllowMethods = DEFAULT_ACCESS_CONTROL_ALLOW_METHODS_VALUE;
@@ -60,12 +60,12 @@ public class CORSFilter implements Filter {
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
     HttpServletResponse response = (HttpServletResponse) servletResponse;
+    HttpServletResponse request = (HttpServletResponse) servletResponse;
 
     response.setHeader(ACCESS_CONTROL_ALLOW_ORIGIN_NAME, accessControlAllowOrigin);
     response.setHeader(ACCESS_CONTROL_ALLOW_METHODS_NAME, accessControlAllowMethods);
     response.setHeader(ACCESS_CONTROL_MAX_AGE_NAME, accessControlAllowMaxAge);
     response.setHeader(ACCESS_CONTROL_ALLOW_HEADERS_NAME, accessControlAllowHeaders);
-
     filterChain.doFilter(servletRequest, servletResponse);
   }
 

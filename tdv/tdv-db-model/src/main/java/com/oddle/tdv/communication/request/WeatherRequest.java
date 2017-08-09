@@ -8,6 +8,8 @@ import java.util.Date;
 public class WeatherRequest {
     private Long cityId;
 
+    private String cityName;
+
     private float temperature;
 
     private String status;
@@ -29,6 +31,14 @@ public class WeatherRequest {
 
     public void setCityId(Long cityId) {
         this.cityId = cityId;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public float getTemperature() {

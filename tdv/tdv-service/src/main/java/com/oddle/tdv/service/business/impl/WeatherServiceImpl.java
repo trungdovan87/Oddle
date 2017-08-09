@@ -20,6 +20,7 @@ public class WeatherServiceImpl implements WeatherService {
         Optional<City> optional = cityRepo.findById(request.getCityId());
         if (optional.isPresent()) {
             City city = optional.get();
+            city.setName(request.getCityName());
             city.setWeather(weather);
             weather.setCity(city);
             weather.setCreateDate(request.getCreateDate() != null ? request.getCreateDate() : new Date());

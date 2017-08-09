@@ -55,7 +55,11 @@ class WeatherTab extends Component {
               <p> <b> Edit city</b></p>
               <textarea style = {{width: 500, height: 300}}  onChange={(event) => that.setState({updateText : event.target.value})} >{this.state.updateText}</textarea>
               <br/>
-              <button>Update</button>
+              <button onClick={ () => {
+                  if (confirm("Do you want to update city with data: \n" + that.state.updateText)) {
+                      api.saveWeather(JSON.parse(that.state.updateText))
+                  }
+              }}>Update</button>
               <button onClick={() => that.setState({editId : undefined, updateText : undefined})}>Cancel</button>
           </div>
         );
