@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import api from "../api/service/WeatherApi"
 import WeatherTab from "./WeatherTab";
 import CityTab from "./CityTab";
 import LogTab from "./LogTab";
