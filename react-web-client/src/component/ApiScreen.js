@@ -64,7 +64,11 @@ class ApiScreen extends Component {
                 <p/>
                 {this._result()}
                 <p>---------------</p>
-                <a href="#home" onClick={() => this.props.selectScreen("home")}> HOME </a>
+                <a href=""
+                   onClick={(e) => { e.preventDefault(); this.props.selectScreen("home")}}
+                >
+                    HOME
+                </a>
             </div>
         );
     }
