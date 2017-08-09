@@ -1,16 +1,8 @@
 import React, {Component} from "react";
 import "./App.css";
 import "./commons/preload";
-import api from "./api/service/WeatherApi"
 import SelectScreen from "./component/SelectScreen"
 import ApiScreen from "./component/ApiScreen"
-
-// let promise = api.get(2);
-// promise.then(
-//     json => {
-//         console.log("json get Weather: ", json);
-//     }
-// );
 
 class App extends Component {
 
@@ -28,12 +20,12 @@ class App extends Component {
     }
 
     render() {
-        if (this.state.screen === "select") {
+        if (this.state.screen === "home") {
             return (
                 <SelectScreen selectScreen = {this.selectScreen} />
             );
         } else if (this.state.screen === "end-user") {
-            return <ApiScreen/>
+            return <ApiScreen selectScreen = {this.selectScreen}/>
         } else if (this.state.screen === "admin") {
             return <p> Admin screen </p>
         }

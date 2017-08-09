@@ -61,8 +61,10 @@ class ApiScreen extends Component {
                 <input type="text" onChange={this.onTextChange} ref={(input) => {
                     this.nameInput = input;
                 }}/>
-                <button> Search</button>
+                <p/>
                 {this._result()}
+                <p>---------------</p>
+                <a href="#home" onClick={() => this.props.selectScreen("home")}> HOME </a>
             </div>
         );
     }
