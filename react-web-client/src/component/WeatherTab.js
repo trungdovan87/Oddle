@@ -25,7 +25,7 @@ class WeatherTab extends Component {
     };
 
     componentDidMount() {
-        this.nameInput.focus();
+        this.idInput.focus();
     }
 
     _convertCityToLI = (city) => {
@@ -92,18 +92,10 @@ class WeatherTab extends Component {
                 <p><b> Weather Tab </b> </p>
                 <p> Search</p>
                 <input type="text" onChange={this.onTextChange} ref={(input) => {
-                    this.nameInput = input;
+                    this.idInput = input;
                 }}/>
                 {this._result()}
                 {this._edit()}
-
-                <p>---------------</p>
-                <a href=""
-                   onClick={(e) => { e.preventDefault(); this.props.selectScreen("home")}}
-                >
-                    HOME
-                </a>
-
             </div>
         );
     }

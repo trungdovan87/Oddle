@@ -82,15 +82,9 @@ class WeatherTab extends Component {
 
                 <p> Search</p>
                 <input type="text" onChange={this.onTextChange} ref={(input) => {
-                    this.nameInput = input;
+                    this.idInput = input;
                 }}/>
                 {this._result()}
-                <p>---------------</p>
-                <a href=""
-                   onClick={(e) => { e.preventDefault(); this.props.selectScreen("home")}}
-                >
-                    HOME
-                </a>
             </div>
         )
     }

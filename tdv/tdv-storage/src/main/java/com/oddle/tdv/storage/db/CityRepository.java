@@ -17,6 +17,6 @@ public interface CityRepository extends JpaRepository<City, Long> {
     @Query("SELECT c FROM City c WHERE c.name LIKE ?1")
     Optional<City> findByName(String name);
 
-    @Query("SELECT c FROM City  c WHERE c.name LIKE concat(:name, '%')")//Works Fine
+    @Query("SELECT c FROM City  c WHERE c.name LIKE concat(:name, '%')")
     Page<City> searchByName(@Param("name") String name, Pageable pageable);
 }

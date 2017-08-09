@@ -23,7 +23,7 @@ class App extends Component {
     render() {
         if (this.state.screen === "home") {
             return (
-                <HomeScreen selectScreen={this.selectScreen} />
+                <HomeScreen selectScreen={this.selectScreen}/>
             );
         } else if (this.state.screen === "end-user") {
             return <ApiScreen selectScreen={this.selectScreen}/>

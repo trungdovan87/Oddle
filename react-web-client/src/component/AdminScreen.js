@@ -8,7 +8,7 @@ class AdminScreen extends Component {
     constructor() {
         super();
         this.state = {
-            tab: "city"
+            tab: "log"
         };
         // this.onTextChange = this.onTextChange.bind(this);
     }
@@ -50,6 +50,13 @@ class AdminScreen extends Component {
                 > Log </a>
 
                 {this._tabs()}
+
+                <p>---------------</p>
+                <a href=""
+                   onClick={(e) => { e.preventDefault(); this.props.selectScreen("home")}}
+                >
+                    HOME
+                </a>
             </div>
         )
 

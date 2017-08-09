@@ -23,7 +23,7 @@ class ApiScreen extends Component {
     };
 
     componentDidMount() {
-        this.nameInput.focus();
+        this.idInput.focus();
     }
 
     _convertCityToLI(city) {
@@ -59,7 +59,7 @@ class ApiScreen extends Component {
             <div>
                 <h1>End-User Screen</h1>
                 <input type="text" onChange={this.onTextChange} ref={(input) => {
-                    this.nameInput = input;
+                    this.idInput = input;
                 }}/>
                 <p/>
                 {this._result()}
