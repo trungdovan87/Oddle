@@ -17,4 +17,10 @@ public class LogWeatherServiceImpl implements LogWeatherService{
     public List<LogWeather> getByCityId(long cityId) {
         return logRepo.getByCityId(cityId, PageRequest.of(0, 1000)).stream().collect(Collectors.toList());
     }
+
+    @Override
+    public boolean delete(long id) {
+        logRepo.deleteById(id);
+        return true;
+    }
 }

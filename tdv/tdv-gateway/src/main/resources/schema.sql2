@@ -17,4 +17,9 @@ INSERT INTO `Weather` (`createDate`, `humidity`, `pressure`, `status`, `temperat
 INSERT INTO `City` (`id`, `name`) VALUES ('3', 'Singapore');
 INSERT INTO `Weather` (`createDate`, `humidity`, `pressure`, `status`, `temperature`, `windy`, `city_id`) VALUES ('2017-08-09 13:23:37', '3', '3', 'thunderstorm', '3', '3', '3');
 
+--- insert Log: 2 log for city 1; 1 log for city 2; 0 log for city 3;
+INSERT INTO `LogWeather` (`id`, `createDate`, `humidity`, `note`, `pressure`, `status`, `temperature`, `windy`, `cityId`) VALUES ('10', '2017-08-09 16:22:24', '3', 'kaka', '3', 'rainy', '3', '3', '1');
+INSERT INTO `LogWeather` (`id`, `createDate`, `humidity`, `note`, `pressure`, `status`, `temperature`, `windy`, `cityId`) VALUES ('11', '2016-02-03 16:22:24', '4', 'kaka', '4', 'hot', '4', '4', '1');
+
+INSERT INTO `LogWeather` (`id`, `createDate`, `humidity`, `note`, `pressure`, `status`, `temperature`, `windy`, `cityId`) VALUES ('12', '2016-02-03 16:22:24', '5', 'kaka', '5', 'cloudy', '5', '5', '2');
 

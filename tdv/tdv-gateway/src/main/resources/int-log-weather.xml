@@ -10,17 +10,27 @@
     <gateway id="logWeatherGateway"
              service-interface="com.oddle.tdv.boot.gateway.LogWeatherGateway"
              default-reply-timeout="30000">
-        <method name="getByCityId" request-channel="logWeather-getByCity-channel"/>
+        <method name="getByCityId" request-channel="logWeather-getByCityId-channel"/>
+        <method name="delete" request-channel="logWeather-delete-channel"/>
     </gateway>
 
-    <channel id="logWeather-getByCity-channel"/>
-    <chain input-channel="logWeather-getByCity-channel">
+    <channel id="logWeather-getByCityId-channel"/>
+    <chain input-channel="logWeather-getByCityId-channel">
         <!--<filter ref="weatherDataInputValidator" method="validateSave" throw-exception-on-rejection="true"/>-->
         <!--<filter ref="securityUserValidator" method="validateAdd" throw-exception-on-rejection="true"/>-->
         <!--<filter ref="weatherStorageValidator" method="validateSave" throw-exception-on-rejection="true"/>-->
 
         <service-activator ref="logWeatherService" method="getByCityId"/>
         <transformer ref="weatherTransformer" method="convertToListLogWeatherRes"/>
+    </chain>
+
+    <channel id="logWeather-delete-channel"/>
+    <chain input-channel="logWeather-delete-channel">
+        <!--<filter ref="weatherDataInputValidator" method="validateSave" throw-exception-on-rejection="true"/>-->
+        <!--<filter ref="securityUserValidator" method="validateAdd" throw-exception-on-rejection="true"/>-->
+        <!--<filter ref="weatherStorageValidator" method="validateSave" throw-exception-on-rejection="true"/>-->
+
+        <service-activator ref="logWeatherService" method="delete"/>
     </chain>
 
     <!--<beans:bean id="weatherDataInputValidator" class="com.oddle.tdv.boot.filter.WeatherDataInputValidator"/>-->

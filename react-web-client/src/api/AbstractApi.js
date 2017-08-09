@@ -100,7 +100,7 @@ class AbstractApi {
      * @protected
      */
     _httpPost(url, payload) {
-        console.log("POST url", url, "payload", payload);
+        // console.log("POST url", url, "payload", payload);
         let data = JSON.stringify(payload);
 
         return fetch(url,

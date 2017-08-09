@@ -85,6 +85,12 @@ class WeatherTab extends Component {
                     this.idInput = input;
                 }}/>
                 {this._result()}
+                <p>---------------</p>
+                <a href=""
+                   onClick={(e) => { e.preventDefault(); this.props.selectScreen("home")}}
+                >
+                    HOME
+                </a>
             </div>
         )
     }

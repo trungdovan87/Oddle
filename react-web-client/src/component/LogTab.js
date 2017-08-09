@@ -7,31 +7,50 @@ class WeatherTab extends Component {
         this.state = {};
     }
 
-    _getCityById = () => {
-        let id = parseInt(this.idInput.value.trim(), 10);
+    _callApiGetLogByCityId = (id) => {
         let that = this;
+        api.getLogByCityId(id).then( (json) => {
+            if (json.status === 0) {
+                that.setState({logs: json.data});
+            } else {
+                alert("delete log Failure, error:\n" + JSON.stringify(json, null, 2));
+            }
+        })
+    };
+
+    _getLogByCitId = () => {
+        let id = parseInt(this.idInput.value.trim(), 10);
         if (!isNaN(id)) {
-            api.getLogByCityId(id).then( (json) => {
-                if (json.status === 0) {
-                    that.setState({logs: json.data});
-                }
-            })
+            this._callApiGetLogByCityId(id);
         } else {
             alert(this.idInput.value + " is not Number");
         }
+    };
+
+    _deleteLog(id) {
+        if (confirm("Do you want to delete log with id = " + id + " city?")) {
+            api.deleteLog(id).then( (json)=> {
+                if (json.status === 0) {
+                    this._getLogByCitId();
+                    alert("delete log SUCCESS")
+                } else {
+                    alert("delete log Failure, error:\n" + JSON.stringify(json, null, 2));
+                }
+            });
+        }
     }
 
-    _convertLogToLI = (city) => {
+    _convertLogToLI = (log) => {
         return (
-            <li key={city.cityId}>
-                <b> {city.cityName} </b> ({city.createDate})
+            <li key={log.id}>
+                <b> {log.cityName} </b> ({log.createDate}): id log = {log.id}
 
                 <br/>
-                temp: {city.temperature} degree | {city.status} | {city.windy} m/s | {city.humidity}% | {city.pressure} hpa | --
-                <button>delete</button>
+                temp: {log.temperature} degree | {log.status} | {log.windy} m/s | {log.humidity}% | {log.pressure} hpa | --
+                <button onClick={() => this._deleteLog(log.id)}>delete</button>
             </li>
         )
-    }
+    };
 
     _result = () => {
         if (this.state.logs === undefined) {
@@ -45,7 +64,7 @@ class WeatherTab extends Component {
                 </ul>
             )
         }
-    }
+    };
 
     componentDidMount() {
         this.idInput.focus();
@@ -60,7 +79,7 @@ class WeatherTab extends Component {
                     this.idInput = input;
                 }}/>
 
-                <button onClick={this._getCityById}>Get Log</button>
+                <button onClick={this._getLogByCitId}>Get Log</button>
                 {this._result()}
             </div>
         )

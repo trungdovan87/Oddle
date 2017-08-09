@@ -6,7 +6,7 @@ class WeatherTab extends Component {
     constructor() {
         super();
         this.state = {
-
+            updateText: ""
         };
         // this.onTextChange = this.onTextChange.bind(this);
     }
@@ -53,7 +53,7 @@ class WeatherTab extends Component {
         return (
           <div>
               <p> <b> Edit city</b></p>
-              <textarea style={{width: 500, height: 300}}  onChange={(event) => that.setState({updateText : event.target.value})} >{this.state.updateText}</textarea>
+              <textarea style={{width: 500, height: 300}} value={this.state.updateText} onChange={(event) => that.setState({updateText : event.target.value})} ></textarea>
               <br/>
               <button onClick={ () => {
                   if (confirm("Do you want to update city with data: \n" + that.state.updateText)) {

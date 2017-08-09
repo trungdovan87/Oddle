@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface LogWeatherGateway {
     List<LogWeatherResponse> getByCityId(long cityId);
+    boolean delete(long id);
 }

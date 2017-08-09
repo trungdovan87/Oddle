@@ -22,4 +22,9 @@ public class LogWeatherController extends AbstractController {
     public OddleResponse<List<LogWeatherResponse>> getByCityId(@RequestParam long cityId) {
         return requestGW(cityId, logWeatherGateway::getByCityId);
     }
+
+    @GetMapping("/delete")
+    public OddleResponse<Boolean> delete(@RequestParam long id) {
+        return requestGW(id, logWeatherGateway::delete);
+    }
 }
