@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class WeatherTransformer {
     public WeatherResponse convertToWeatherRes(Weather weather) {
         WeatherResponse result = new WeatherResponse();
+
         result.setCityId(weather.getCity().getId());
         result.setCityName(weather.getCity().getName());
         result.setCreateDate(weather.getCreateDate());

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <gateway id="weatherGateway"
+             service-interface="com.oddle.tdv.boot.gateway.WeatherGateway"
+             default-reply-timeout="30000">
+        <method name="save" request-channel="weather-save-channel"/>
+    </gateway>
+
+    <channel id="weather-save-channel"/>
+    <chain input-channel="weather-save-channel">
+        <filter ref="weatherDataInputValidator" method="validateSave" throw-exception-on-rejection="true"/>
+        <!--<filter ref="securityUserValidator" method="validateAdd" throw-exception-on-rejection="true"/>-->
+        <filter ref="weatherStorageValidator" method="validateSave" throw-exception-on-rejection="true"/>
+        <!--<transformer ref="dataTransformer" method="convertToData"/>-->
+        <service-activator ref="weatherService" method="save"/>
+    </chain>
+
+    <beans:bean id="weatherDataInputValidator" class="com.oddle.tdv.boot.filter.WeatherDataInputValidator"/>
+    <beans:bean id="weatherService" class="com.oddle.tdv.service.business.impl.WeatherServiceImpl"/>
+    <beans:bean id="weatherStorageValidator" class="com.oddle.tdv.service.filter.WeatherStorageValidator"/>
+</beans:beans>

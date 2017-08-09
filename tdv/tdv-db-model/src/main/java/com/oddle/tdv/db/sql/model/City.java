@@ -3,6 +3,7 @@ package com.oddle.tdv.db.sql.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Embeddable
@@ -10,6 +11,10 @@ public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "city")
+    private List<LogWeather> logWeathers;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "city")
     private Weather weather;
@@ -24,6 +29,14 @@ public class City implements Serializable {
     public City() {
         this.setWeather(new Weather());
         this.getWeather().setCity(this);
+    }
+
+    public List<LogWeather> getLogWeathers() {
+        return logWeathers;
+    }
+
+    public void setLogWeathers(List<LogWeather> logWeathers) {
+        this.logWeathers = logWeathers;
     }
 
     public Long getId() {

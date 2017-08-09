@@ -4,6 +4,17 @@
 -- drop DB
 -- DROP DATABASE `oddle_shop`;
 
--- insert Area
+-- insert User
 INSERT INTO `OddUser` (`email`, `password`, `userName`) VALUES ('trungdovan87@gmail.com', '123456', 'admin');
+
+-- insert City and Weather
+INSERT INTO `City` (`id`, `name`) VALUES ('1', 'Paris');
+INSERT INTO `Weather` (`createDate`, `humidity`, `pressure`, `status`, `temperature`, `windy`, `city_id`) VALUES ('2017-08-09 13:23:37', '1', '1', 'rainy', '1', '1', '1');
+
+INSERT INTO `City` (`id`, `name`) VALUES ('2', 'Saigon');
+INSERT INTO `Weather` (`createDate`, `humidity`, `pressure`, `status`, `temperature`, `windy`, `city_id`) VALUES ('2017-08-09 13:23:37', '2', '2', 'sunny', '2', '2', '2');
+
+INSERT INTO `City` (`id`, `name`) VALUES ('3', 'Singapore');
+INSERT INTO `Weather` (`createDate`, `humidity`, `pressure`, `status`, `temperature`, `windy`, `city_id`) VALUES ('2017-08-09 13:23:37', '3', '3', 'thunderstorm', '3', '3', '3');
+
 
