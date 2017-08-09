@@ -57,7 +57,13 @@ class WeatherTab extends Component {
               <br/>
               <button onClick={ () => {
                   if (confirm("Do you want to update city with data: \n" + that.state.updateText)) {
-                      api.saveWeather(JSON.parse(that.state.updateText))
+                      api.saveWeather(JSON.parse(that.state.updateText)).then(json => {
+                          if (json.status === 0) {
+                              alert("UPDATE DONE");
+                          } else {
+                              alert("UPDATE FAILURE:" + JSON.stringify(json, null, 2));
+                          }
+                      } )
                   }
               }}>Update</button>
               <button onClick={() => that.setState({editId : undefined, updateText : undefined})}>Cancel</button>
@@ -83,6 +89,7 @@ class WeatherTab extends Component {
     render() {
         return (
             <div>
+                <p><b> Weather Tab </b> </p>
                 <p> Search</p>
                 <input type="text" onChange={this.onTextChange} ref={(input) => {
                     this.nameInput = input;
