@@ -9,7 +9,7 @@ class AdminScreen extends Component {
     constructor() {
         super();
         this.state = {
-            tab: "weather"
+            tab: "city"
         };
         // this.onTextChange = this.onTextChange.bind(this);
     }

@@ -8,7 +8,7 @@ public class PagingRequest implements IPageableRequest {
   private Integer pageSize;
 
   private static final Integer DEFAULT_PAGE_NUMBER = 0;
-  private static final Integer DEFAULT_PAGE_SIZE = 10;
+  private static final Integer DEFAULT_PAGE_SIZE = 20;
 
   public PagingRequest() {
   }

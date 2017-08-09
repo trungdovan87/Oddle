@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-class SelectScreen extends Component {
+class HomeScreen extends Component {
     render() {
         return (
             <div>
@@ -11,4 +11,4 @@ class SelectScreen extends Component {
     }
 }
 
-export default SelectScreen;
+export default HomeScreen;
