@@ -17,4 +17,10 @@ public class CityServiceImpl implements CityService {
         city.setNote(request.getNote());
         return cityRepo.save(city).getId();
     }
+
+    @Override
+    public boolean delete(long id) {
+        cityRepo.deleteById(id);
+        return true;
+    }
 }

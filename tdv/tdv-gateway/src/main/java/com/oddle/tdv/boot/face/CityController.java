@@ -17,4 +17,9 @@ public class CityController extends AbstractController{
     public OddleResponse<Long> create(@RequestBody CityRequest request) {
         return requestGW(request, cityGateway::create);
     }
+
+    @GetMapping("/delete")
+    public OddleResponse<Boolean> create(@RequestParam long id) {
+        return requestGW(id, cityGateway::delete);
+    }
 }

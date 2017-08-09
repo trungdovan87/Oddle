@@ -35,7 +35,13 @@ class WeatherTab extends Component {
 
     _deleteCity(id, name) {
         if (confirm("Do you want to delete '" + name +  "' city?")) {
-
+            api.deleteCity(id).then( (json)=> {
+                if (json.status === 0) {
+                    alert("delete city SUCCESS")
+                } else {
+                    alert("delete city Failure, error:\n" + JSON.stringify(json, null, 2));
+                }
+            });
         }
     }
 
@@ -43,7 +49,7 @@ class WeatherTab extends Component {
         let that = this;
         return (
             <li key={city.cityId}>
-                <b> {city.cityName} </b>
+                <b> {city.cityName} </b> with id = {city.cityId}
                 <button onClick={() => that._deleteCity(city.cityId, city.cityName)}> delete </button>
             </li>
         )

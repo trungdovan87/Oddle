@@ -1,4 +1,4 @@
-docker run --name oddle-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:8.0
+docker run --name oddle-mysql -p 3340:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:8.0
 
 mysql -h127.0.0.1 -uroot -p123456
 
