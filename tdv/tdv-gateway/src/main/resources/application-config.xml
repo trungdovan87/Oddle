@@ -18,4 +18,5 @@
     <import resource="int-city.xml"/>
     <import resource="int-weather.xml"/>
     <import resource="int-api.xml"/>
+    <import resource="int-log-weather.xml"/>
 </beans>

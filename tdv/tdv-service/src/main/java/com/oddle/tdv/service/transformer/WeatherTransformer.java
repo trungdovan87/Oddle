@@ -1,7 +1,9 @@
 package com.oddle.tdv.service.transformer;
 
+import com.oddle.tdv.communication.response.LogWeatherResponse;
 import com.oddle.tdv.communication.response.WeatherResponse;
 import com.oddle.tdv.db.sql.model.City;
+import com.oddle.tdv.db.sql.model.LogWeather;
 import com.oddle.tdv.db.sql.model.Weather;
 import org.springframework.data.domain.Page;
 
@@ -36,6 +38,26 @@ public class WeatherTransformer {
 
     public WeatherResponse convertToWeatherRes(City city) {
         return convertToWeatherRes(city.getWeather());
+    }
+
+    public LogWeatherResponse convertLogWeatherRes(LogWeather log) {
+        LogWeatherResponse result = new LogWeatherResponse();
+
+        result.setId(log.getId());
+        result.setCityId(log.getCity().getId());
+        result.setCityName(log.getCity().getName());
+        result.setCreateDate(log.getCreateDate());
+        result.setHumidity(log.getHumidity());
+        result.setPressure(log.getPressure());
+        result.setStatus(log.getStatus());
+        result.setTemperature(log.getTemperature());
+        result.setWindy(log.getWindy());
+
+        return result;
+    }
+
+    public List<LogWeatherResponse> convertToListLogWeatherRes(List<LogWeather> logs) {
+        return logs.stream().map(this::convertLogWeatherRes).collect(Collectors.toList());
     }
 
     public List<WeatherResponse> convertToListWeatherRes(Page<City> page) {

@@ -7,22 +7,24 @@
 			http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    <gateway id="weatherGateway"
-             service-interface="com.oddle.tdv.boot.gateway.WeatherGateway"
+    <gateway id="logWeatherGateway"
+             service-interface="com.oddle.tdv.boot.gateway.LogWeatherGateway"
              default-reply-timeout="30000">
-        <method name="save" request-channel="weather-save-channel"/>
+        <method name="getByCityId" request-channel="logWeather-getByCity-channel"/>
     </gateway>
 
-    <channel id="weather-save-channel"/>
-    <chain input-channel="weather-save-channel">
-        <filter ref="weatherDataInputValidator" method="validateSave" throw-exception-on-rejection="true"/>
+    <channel id="logWeather-getByCity-channel"/>
+    <chain input-channel="logWeather-getByCity-channel">
+        <!--<filter ref="weatherDataInputValidator" method="validateSave" throw-exception-on-rejection="true"/>-->
         <!--<filter ref="securityUserValidator" method="validateAdd" throw-exception-on-rejection="true"/>-->
-        <filter ref="weatherStorageValidator" method="validateSave" throw-exception-on-rejection="true"/>
-        <!--<transformer ref="dataTransformer" method="convertToData"/>-->
-        <service-activator ref="weatherService" method="save"/>
+        <!--<filter ref="weatherStorageValidator" method="validateSave" throw-exception-on-rejection="true"/>-->
+
+        <service-activator ref="logWeatherService" method="getByCityId"/>
+        <transformer ref="weatherTransformer" method="convertToListLogWeatherRes"/>
     </chain>
 
-    <beans:bean id="weatherDataInputValidator" class="com.oddle.tdv.boot.filter.WeatherDataInputValidator"/>
-    <beans:bean id="weatherService" class="com.oddle.tdv.service.business.impl.WeatherServiceImpl"/>
-    <beans:bean id="weatherStorageValidator" class="com.oddle.tdv.service.filter.WeatherStorageValidator"/>
+    <!--<beans:bean id="weatherDataInputValidator" class="com.oddle.tdv.boot.filter.WeatherDataInputValidator"/>-->
+    <!--<beans:bean id="weatherStorageValidator" class="com.oddle.tdv.service.filter.WeatherStorageValidator"/>-->
+    <beans:bean id="logWeatherService" class="com.oddle.tdv.service.business.impl.LogWeatherServiceImpl"/>
+
 </beans:beans>
