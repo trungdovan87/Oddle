@@ -1,15 +1,16 @@
 import React, {Component} from "react";
 import "./App.css";
 import "./commons/preload";
-import SelectScreen from "./component/SelectScreen"
+import HomeScreen from "./component/HomeScreen"
 import ApiScreen from "./component/ApiScreen"
+import AdminScreen from "./component/AdminScreen";
 
 class App extends Component {
 
     constructor() {
         super();
         this.state = {
-            screen: "end-user"
+            screen: "admin"
         };
 
         this.selectScreen = this.selectScreen.bind(this);
@@ -22,12 +23,12 @@ class App extends Component {
     render() {
         if (this.state.screen === "home") {
             return (
-                <SelectScreen selectScreen = {this.selectScreen} />
+                <HomeScreen selectScreen={this.selectScreen} />
             );
         } else if (this.state.screen === "end-user") {
-            return <ApiScreen selectScreen = {this.selectScreen}/>
+            return <ApiScreen selectScreen={this.selectScreen}/>
         } else if (this.state.screen === "admin") {
-            return <p> Admin screen </p>
+            return <AdminScreen selectScreen={this.selectScreen}/>
         }
     }
 }

@@ -57,7 +57,7 @@ class ApiScreen extends Component {
     render() {
         return (
             <div>
-                <p>Weather of City </p>
+                <h1>End-User Screen</h1>
                 <input type="text" onChange={this.onTextChange} ref={(input) => {
                     this.nameInput = input;
                 }}/>
