@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import api from "../api/service/WeatherApi";
-import Modal from 'react-modal';
 
 class WeatherTab extends Component {
 
@@ -38,7 +37,7 @@ class WeatherTab extends Component {
                 <br/>
                 temp: {city.temperature} degree | {city.status} | {city.windy} m/s | {city.humidity}% | {city.pressure} hpa | --
 
-                <button onClick={() => that.setState({editId : city.cityId, updateText : JSON.stringify(city, null, 2)})}> Edit </button>
+                <button onClick={() => {that.setState({editId : city.cityId, updateText : JSON.stringify(city, null, 2)})}}> Edit </button>
             </li>
         )
     }
@@ -50,7 +49,7 @@ class WeatherTab extends Component {
         }
         return (
           <div>
-              <p> <b> Edit city with id = {this.state.editId}</b></p>
+              <p> <b> Edit city</b></p>
               <textarea style = {{width: 500, height: 300}}  onChange={(event) => that.setState({updateText : event.target.value})} >{this.state.updateText}</textarea>
               <br/>
               <button>Update</button>
