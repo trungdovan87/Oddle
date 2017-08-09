@@ -28,7 +28,7 @@ class WeatherTab extends Component {
         this.nameInput.focus();
     }
 
-    _convertCityToLI= (city) => {
+    _convertCityToLI = (city) => {
         let that = this;
         return (
             <li key={city.cityId}>
@@ -36,8 +36,11 @@ class WeatherTab extends Component {
 
                 <br/>
                 temp: {city.temperature} degree | {city.status} | {city.windy} m/s | {city.humidity}% | {city.pressure} hpa | --
-
-                <button onClick={() => {that.setState({editId : city.cityId, updateText : JSON.stringify(city, null, 2)})}}> Edit </button>
+                {
+                    that.state.editId === undefined ?
+                        <button onClick={() => {that.setState({editId : city.cityId, updateText : JSON.stringify(city, null, 2)})}}> Edit </button>
+                        : <div></div>
+                }
             </li>
         )
     }
