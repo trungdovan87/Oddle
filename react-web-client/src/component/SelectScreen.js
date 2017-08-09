@@ -5,7 +5,7 @@ class SelectScreen extends Component {
         return (
             <div>
                 <button onClick={() => this.props.selectScreen("end-user")}> End User</button>
-                <button> Admin</button>
+                <button onClick={() => this.props.selectScreen("admin")}> Admin</button>
             </div>
         );
     }

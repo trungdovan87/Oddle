@@ -9,13 +9,24 @@ class WeatherApi extends AbstractApi {
 
     /**
      *
-     * @param {string} cityId
+     * @param {number} cityId
      * @returns {Promise.<Object>}
      */
-    get(cityId) {
+    getCity(cityId) {
         let params = {};
         params['cityId'] = cityId;
         return this._httpGet(this._createUrlWithoutToken(this._context + "api/weather/get", params));
+    }
+
+    /**
+     *
+     * @param {number} cityId
+     * @returns {Promise.<Object>}
+     */
+    searchWeather(cityName) {
+        let params = {};
+        params['name'] = cityName;
+        return this._httpGet(this._createUrlWithoutToken(this._context + "api/weather/search", params));
     }
 }
 

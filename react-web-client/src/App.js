@@ -3,22 +3,22 @@ import "./App.css";
 import "./commons/preload";
 import api from "./api/service/WeatherApi"
 import SelectScreen from "./component/SelectScreen"
+import ApiScreen from "./component/ApiScreen"
 
-let promise = api.get(2);
-promise.then(
-    json => {
-        console.log("json get Weather: ", json);
-    }
-);
+// let promise = api.get(2);
+// promise.then(
+//     json => {
+//         console.log("json get Weather: ", json);
+//     }
+// );
 
 class App extends Component {
-    that = this;
 
     constructor() {
         super();
         this.state = {
-            screen: "select"
-        }
+            screen: "end-user"
+        };
 
         this.selectScreen = this.selectScreen.bind(this);
     }
@@ -33,7 +33,9 @@ class App extends Component {
                 <SelectScreen selectScreen = {this.selectScreen} />
             );
         } else if (this.state.screen === "end-user") {
-            return <p> End User screen </p>
+            return <ApiScreen/>
+        } else if (this.state.screen === "admin") {
+            return <p> Admin screen </p>
         }
     }
 }
