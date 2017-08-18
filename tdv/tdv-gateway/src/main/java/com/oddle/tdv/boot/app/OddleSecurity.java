@@ -1,6 +1,7 @@
 package com.oddle.tdv.boot.app;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -11,7 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class OddleSecurity extends WebSecurityConfigurerAdapter{
+public class OddleSecurity extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
 //        web.ignoring().antMatchers("/tools/encode");
@@ -20,8 +21,18 @@ public class OddleSecurity extends WebSecurityConfigurerAdapter{
     }
 
     @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("user").password("123").roles("USER")
+                .and().withUser("admin").password("123").roles("ADMIN");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+//        http.authorizeRequests()
+//                .antMatchers("/admin/**").hasRole("ADMIN");
+
         http.exceptionHandling()
                 .and()
                 .anonymous()
@@ -33,5 +44,6 @@ public class OddleSecurity extends WebSecurityConfigurerAdapter{
 //            .and().authorizeRequests().antMatchers("/**").hasAnyRole("HOMEDIRECT/AdminHome").anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new CORSFilter(), UsernamePasswordAuthenticationFilter.class);
+
     }
 }
