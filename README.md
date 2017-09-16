@@ -30,6 +30,7 @@ Client:
 6. Change dir "react-web-client". run:
 
 	sudo npm install
+	
 	npm start
 
 ---- DONE -----
