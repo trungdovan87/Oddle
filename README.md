@@ -12,8 +12,10 @@ sudo apt install docker.io
 you can connect mysql: 
 	mysql -h127.0.0.1 -P3340 -uroot -p123456
 
-3. run it twice: 
+3. run it TWO TIME (second run will init sample data for mySQL database): 
 
+	./gradlew :tdv-gateway:bootRun
+	
 	./gradlew :tdv-gateway:bootRun
 
 ------------
