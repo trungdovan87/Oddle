@@ -3,7 +3,7 @@
 Server:
 1. Install Docker:
 
-sudo apt install docker
+sudo apt install docker.io
 
 2. run with images "mysql/mysql-server":
 
